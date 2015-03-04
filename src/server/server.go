@@ -15,16 +15,16 @@ const (
 func main() {
 	log.Println("Server Starting...")
 
-	r := mux.NewRouter()
-	fs := http.FileServer(http.Dir("../client"))
+	baseRouter := mux.NewRouter()
+	fileServer := http.FileServer(http.Dir("../client"))
 
-	r.Host("{sub:.*}.{dom:.*}.{tld:.*}").PathPrefix("/").HandlerFunc(redirect)
-	ds := r.Host(domain).Subrouter()
-	ds.Methods("GET").PathPrefix("/").Handler(fs)
-	apis := ds.Methods("POST").Subrouter()
-	api.Route(apis)
+	baseRouter.Host("{sub:.*}.{dom:.*}.{tld:.*}").PathPrefix("/").HandlerFunc(redirect)
+	domainRouter := baseRouter.Host(domain).Subrouter()
+	domainRouter.Methods("GET").PathPrefix("/").Handler(fileServer)
+	apiRouter := domainRouter.Methods("POST").Subrouter()
+	api.Route(apiRouter)
 
-	http.Handle("/", r)
+	http.Handle("/", baseRouter)
 	log.Println("Server Listening on Port: " + listenPort)
 	http.ListenAndServe(":" + listenPort, nil)
 }

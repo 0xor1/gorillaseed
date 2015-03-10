@@ -17,6 +17,8 @@ func main() {
 	log.Println("Server Starting...")
 
 	store := sessions.NewCookieStore([]byte("something-very-secret"))
+	store.Options.HttpOnly = true
+	store.Options.MaxAge = 3600
 
 	baseRouter := mux.NewRouter()
 	fileServer := http.FileServer(http.Dir("../client"))

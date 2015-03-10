@@ -4,6 +4,7 @@ import (
 	"log"
 	"net/http"
 	"github.com/0xor1/gorillaseed/src/server/lib/mux"
+	"github.com/0xor1/gorillaseed/src/server/lib/sessions"
 	"github.com/0xor1/gorillaseed/src/server/src/api"
 )
 
@@ -15,6 +16,8 @@ const (
 func main() {
 	log.Println("Server Starting...")
 
+	store := sessions.NewCookieStore([]byte("something-very-secret"))
+
 	baseRouter := mux.NewRouter()
 	fileServer := http.FileServer(http.Dir("../client"))
 
@@ -22,7 +25,7 @@ func main() {
 	domainRouter := baseRouter.Host(domain).Subrouter()
 	domainRouter.Methods("GET").PathPrefix("/").Handler(fileServer)
 	apiRouter := domainRouter.Methods("POST").Subrouter()
-	api.Route(apiRouter)
+	api.Route(apiRouter, store)
 
 	http.Handle("/", baseRouter)
 	log.Println("Server Listening on Port: " + listenPort)

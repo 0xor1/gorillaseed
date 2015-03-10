@@ -43,6 +43,7 @@ func getMyCounter(w http.ResponseWriter, r *http.Request){
 	session, _ := sessionStore.Get(r, counterSession)
 	if session.IsNew {
 		session.Values[myCounter] = 0
+		session.Save(r, w)
 	}
 	val := session.Values[myCounter].(int)
 	log.Printf("getMyCounter %d", val)
@@ -61,5 +62,6 @@ func incrementMyCounter(w http.ResponseWriter, r *http.Request){
 	}
 	val := session.Values[myCounter].(int)
 	session.Values[myCounter] = val + 1
+	session.Save(r, w)
 	getMyCounter(w, r)
 }

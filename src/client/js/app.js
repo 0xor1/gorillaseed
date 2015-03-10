@@ -28,6 +28,7 @@ function(
         function globalSuccessHandler(data) {
             globalCounter.text(data.counter);
         }
+        $('#global-refresh-button').click();
 
         var myCounter = $('#my-counter');
         $('#my-refresh-button').click(getMyCounter);
@@ -41,6 +42,7 @@ function(
         function mySuccessHandler(data) {
             myCounter.text(data.counter);
         }
+        $('#my-refresh-button').click();
 
     });
 

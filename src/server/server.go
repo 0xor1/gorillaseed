@@ -5,6 +5,7 @@ import (
 	"net/http"
 	"github.com/0xor1/gorillaseed/src/server/lib/mux"
 	"github.com/0xor1/gorillaseed/src/server/lib/sessions"
+	"github.com/0xor1/gorillaseed/src/server/lib/securecookie"
 	"github.com/0xor1/gorillaseed/src/server/src/api"
 )
 
@@ -16,7 +17,10 @@ const (
 func main() {
 	log.Println("Server Starting...")
 
-	store := sessions.NewCookieStore([]byte("something-very-secret"))
+	authenticationKey := securecookie.GenerateRandomKey(32)
+	encryptionKey := securecookie.GenerateRandomKey(32)
+
+	store := sessions.NewCookieStore(authenticationKey, encryptionKey)
 	store.Options.HttpOnly = true
 	store.Options.MaxAge = 3600
 

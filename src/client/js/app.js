@@ -7,43 +7,35 @@ require.config({
 });
 
 require([
-    '$',
     'ng'
 ],
 function(
-    $,
     ng){
 
-    $(document).ready(function() {
+    var addGetAndIncrementHandlerFuncs = function($scope, $http, counter){
+        var post = counter.substring(0, 1).toUpperCase() + counter.substring(1);
+        ['get', 'increment'].forEach(function(pre){
+            var handler = pre+post;
+            $scope[handler] = function(){
+                $http.post('api/v1/counter/'+handler).success(function(data){
+                    $scope[counter] = data.counter;
+                });
+            };
+        });
+    };
 
-        var globalCounter = $('#global-counter');
-        $('#global-refresh-button').click(getGlobalCounter);
-        $('#global-increment-button').click(incrementGlobalCounter);
-        function getGlobalCounter() {
-            $.post('api/v1/counter/getGlobalCounter', globalSuccessHandler);
-        }
-        function incrementGlobalCounter() {
-            $.post('api/v1/counter/incrementGlobalCounter', globalSuccessHandler);
-        }
-        function globalSuccessHandler(data) {
-            globalCounter.text(data.counter);
-        }
-        $('#global-refresh-button').click();
+    var gorillaseedApp = ng.module('gorillaseedApp', []);
 
-        var myCounter = $('#my-counter');
-        $('#my-refresh-button').click(getMyCounter);
-        $('#my-increment-button').click(incrementMyCounter);
-        function getMyCounter() {
-            $.post('api/v1/counter/getMyCounter', mySuccessHandler);
-        }
-        function incrementMyCounter() {
-            $.post('api/v1/counter/incrementMyCounter', mySuccessHandler);
-        }
-        function mySuccessHandler(data) {
-            myCounter.text(data.counter);
-        }
-        $('#my-refresh-button').click();
+    gorillaseedApp.controller('counterCtrl', [ '$scope', '$http', function($scope, $http){
+        addGetAndIncrementHandlerFuncs($scope, $http, 'globalCounter');
+        addGetAndIncrementHandlerFuncs($scope, $http, 'myCounter');
+        $scope.getGlobalCounter();
+        $scope.getMyCounter();
 
+    }]);
+
+    ng.element(document).ready(function() {
+        ng.bootstrap(document, ['gorillaseedApp']);
     });
 
 });

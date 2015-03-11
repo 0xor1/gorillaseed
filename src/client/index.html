@@ -3,14 +3,20 @@
 		<title>gorillaseed</title>
         <script src="js/lib/require-2.1.16.js"></script>
         <script src="js/app.js"></script>
+        <style>
+            [ng\:cloak], [ng-cloak], [data-ng-cloak], [x-ng-cloak], .ng-cloak, .x-ng-cloak
+            {
+                display: none;
+            }
+        </style>
 	</head>
-	<body>
+	<body ng-controller="counterCtrl" ng-cloak>
 		<h1>gorillaseed</h1>
-        <div><p>Global Counter: <span id="global-counter"></span></p></div>
-        <button id="global-refresh-button">Refresh Global Counter</button>
-        <button id="global-increment-button">Increment Global Counter</button>
-        <div><p>My Counter: <span id="my-counter"></span></p></div>
-        <button id="my-refresh-button">Refresh My Counter</button>
-        <button id="my-increment-button">Increment My Counter</button>
+        <p>Global Counter: {{globalCounter}}</p>
+        <button ng-click="getGlobalCounter()">Refresh Global Counter</button>
+        <button ng-click="incrementGlobalCounter()">Increment Global Counter</button>
+        <p>My Counter: {{myCounter}}</p>
+        <button ng-click="getMyCounter()">Refresh My Counter</button>
+        <button ng-click="incrementMyCounter()">Increment My Counter</button>
 	</body>
 </html>

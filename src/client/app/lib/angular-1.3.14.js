@@ -1,4 +1,4 @@
-define('ng', ['$'], function($){
+define('ng', function(){
 
 /**
  * @license AngularJS v1.3.14

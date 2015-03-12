@@ -1,7 +1,6 @@
 require.config({
     baseUrl: 'app/component',
     paths: {
-        '$': '../lib/jquery-2.1.3',
         'ng': '../lib/angular-1.3.14'
     }
 });

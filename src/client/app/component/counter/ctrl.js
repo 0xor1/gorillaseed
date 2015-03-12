@@ -1,4 +1,8 @@
-define('counter/ctrl', function(){
+define('counter/ctrl', [
+    'text!counter/tpl.html'],
+    function(
+        tpl
+        ){
 
     return function(ngModule){
         ngModule
@@ -27,7 +31,7 @@ define('counter/ctrl', function(){
             $scope.getMyCounter();
         }])
         .directive('goCounter', function(){
-            return {templateUrl: 'app/component/counter/template.html'};
+            return {restrict: 'E', template: tpl};
         });
     }
 });

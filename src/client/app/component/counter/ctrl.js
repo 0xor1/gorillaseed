@@ -30,7 +30,7 @@ define('counter/ctrl', [
             $scope.getGlobalCounter();
             $scope.getMyCounter();
         }])
-        .directive('goCounter', function(){
+        .directive('cpCounter', function(){
             return {restrict: 'E', template: tpl};
         });
     }

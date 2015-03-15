@@ -1,9 +1,8 @@
 define('counter/ctrl', [
-    'text!counter/tpl.html'],
-    function(
-        tpl
-        ){
-
+    'text!counter/tpl.html'
+], function(
+    tpl
+){
     return function(ngModule){
         ngModule
         .controller('counterCtrl', [ '$scope', '$http', function($scope, $http){

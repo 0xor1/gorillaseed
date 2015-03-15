@@ -1,5 +1,5 @@
 require.config({
-    baseUrl: 'app/component',
+    baseUrl: 'component',
     paths: {
         'ng': '../lib/angular-1.3.14',
         'text': '../lib/require-text-2.0.14'
@@ -9,17 +9,15 @@ require.config({
 require([
     'ng',
     'counter/ctrl'
-],
-function(
+], function(
     ng,
-    counterCtrl){
+    counterCtrl
+){
+    var app = ng.module('app', []);
 
-    var module = ng.module('module', []);
-
-    counterCtrl(module);
+    counterCtrl(app);
 
     ng.element(document).ready(function() {
-        ng.bootstrap(document, ['module']);
+        ng.bootstrap(document, ['app']);
     });
-
 });

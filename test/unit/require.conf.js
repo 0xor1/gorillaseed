@@ -12,7 +12,7 @@ requirejs.config({
     paths: {
         'ng': '../lib/angular-1.3.14',
         'text': '../lib/require-text-2.0.14',
-        'ngMock': '../../../test/unit/lib/angular-mocks-1.4.0'
+        'ngMock': '../../../test/unit/lib/angular-mocks-1.3.14'
     },
     deps: tests,
     callback: window.__karma__.start

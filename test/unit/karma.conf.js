@@ -26,6 +26,10 @@ module.exports = function(config) {
 
         reporters: ['coverage'],
 
+        preprocessors: {
+            'src/client/component/**/*.js': ['coverage']
+        },
+
         coverageReporter: {
             type: 'html',
             dir: 'test/unit/coverage/'
@@ -37,7 +41,7 @@ module.exports = function(config) {
 
         autoWatch: true,
 
-        browsers: ['Chrome'/*, 'Firefox', 'IE', 'Safari'*/],
+        browsers: ['Chrome', 'Firefox', 'IE', 'Safari'],
 
         captureTimeout: 5000,
 

@@ -1,28 +1,29 @@
 {
-    "version": "0.0.0",
-    "private": true,
-    "name": "gorillaseed",
-    "description": "A seed project for web apps built with angular and gorilla",
-    "author": {
-        "name": "Daniel Robinson",
-        "email": "daniel.robinson.open@gmail.com",
-        "url": "http://github.com/0xor1"
-    },
-    "repository": {
-        "type": "git",
-        "url": "https://github.com/0xor1/gorillaseed"
-    },
-    "license": "MIT",
-    "devDependencies": {
-        "karma": "^0.12.16",
-        "karma-chrome-launcher": "^0.1.4",
-        "karma-coverage": "^0.2.7",
-        "karma-firefox-launcher": "^0.1.4",
-        "karma-ie-launcher": "^0.1.5",
-        "karma-jasmine": "^0.1.5",
-        "karma-requirejs": "^0.2.2",
-        "karma-safari-launcher": "^0.1.1",
-        "protractor": "~1.0.0",
-        "requirejs": "^2.1.16"
-    }
+  "version": "0.0.0",
+  "private": true,
+  "name": "gorillaseed",
+  "description": "A seed project for web apps built with angular and gorilla",
+  "author": {
+    "name": "Daniel Robinson",
+    "email": "daniel.robinson.open@gmail.com",
+    "url": "http://github.com/0xor1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/0xor1/gorillaseed"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "karma": "^0.12.16",
+    "karma-chrome-launcher": "^0.1.4",
+    "karma-coverage": "^0.2.7",
+    "karma-firefox-launcher": "^0.1.4",
+    "karma-html-reporter": "^0.2.6",
+    "karma-ie-launcher": "^0.1.5",
+    "karma-jasmine": "^0.1.5",
+    "karma-requirejs": "^0.2.2",
+    "karma-safari-launcher": "^0.1.1",
+    "protractor": "~1.0.0",
+    "requirejs": "^2.1.16"
+  }
 }

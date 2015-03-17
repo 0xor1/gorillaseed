@@ -18,13 +18,14 @@ module.exports = function(config) {
             'karma-jasmine',
             'karma-requirejs',
             'karma-coverage',
+            'karma-html-reporter',
             'karma-chrome-launcher',
             'karma-firefox-launcher',
             'karma-safari-launcher',
             'karma-ie-launcher'
         ],
 
-        reporters: ['coverage', 'progress'],
+        reporters: ['coverage', 'html', 'progress'],
 
         preprocessors: {
             'src/client/component/**/*.js': ['coverage']
@@ -33,6 +34,10 @@ module.exports = function(config) {
         coverageReporter: {
             type: 'html',
             dir: 'test/unit/coverage/'
+        },
+
+        htmlReporter: {
+            outputDir: 'results' //it is annoying that this file path isn't from basePath :(
         },
 
         colors: true,

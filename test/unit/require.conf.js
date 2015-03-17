@@ -17,3 +17,5 @@ requirejs.config({
     deps: tests,
     callback: window.__karma__.start
 });
+
+require(['ng', 'text', 'ngMock'], function(){});

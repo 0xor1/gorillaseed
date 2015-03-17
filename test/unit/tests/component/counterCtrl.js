@@ -1,10 +1,8 @@
 define([
     'ng',
-    'ngMock',
     'counter/ctrl'
 ], function(
     ng,
-    ngMock,
     counterCtrl
 ){
     counterCtrl(ng.module('testApp', []));
@@ -19,24 +17,23 @@ define([
             incrementMyCounterRequestHandler
             ;
 
-        //beforeEach(function(){counterCtrl(ng.module('testApp', []))});
+        beforeEach(function(){
+            module('testApp');
+            inject(function($injector){
+                httpBackend = $injector.get('$httpBackend');
+                scope = $injector.get('$rootScope').$new();
+                var $controller = $injector.get('$controller');
 
-        beforeEach(module('testApp'));
+                getGlobalCounterRequestHandler = httpBackend.whenPOST( 'api/v1/counter/getGlobalCounter').respond({counter: 0});
+                incrementGlobalCounterRequestHandler = httpBackend.whenPOST( 'api/v1/counter/incrementGlobalCounter').respond({counter: 1});
+                getMyCounterRequestHandler = httpBackend.whenPOST( 'api/v1/counter/getMyCounter').respond({counter: 0});
+                incrementMyCounterRequestHandler = httpBackend.whenPOST( 'api/v1/counter/incrementMyCounter').respond({counter: 1});
 
-        beforeEach(inject(function($injector){
-            httpBackend = $injector.get('$httpBackend');
-            scope = $injector.get('$rootScope').$new();
-            var $controller = $injector.get('$controller');
-
-            getGlobalCounterRequestHandler = httpBackend.whenPOST( 'api/v1/counter/getGlobalCounter').respond({counter: 0});
-            incrementGlobalCounterRequestHandler = httpBackend.whenPOST( 'api/v1/counter/incrementGlobalCounter').respond({counter: 1});
-            getMyCounterRequestHandler = httpBackend.whenPOST( 'api/v1/counter/getMyCounter').respond({counter: 0});
-            incrementMyCounterRequestHandler = httpBackend.whenPOST( 'api/v1/counter/incrementMyCounter').respond({counter: 1});
-
-            createController = function(){
-                return $controller('counterCtrl', {'$scope': scope});
-            };
-        }));
+                createController = function(){
+                    return $controller('counterCtrl', {'$scope': scope});
+                };
+            });
+        });
 
         afterEach(function(){
             httpBackend.verifyNoOutstandingExpectation();

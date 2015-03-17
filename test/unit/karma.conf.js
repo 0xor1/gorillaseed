@@ -6,12 +6,12 @@ module.exports = function(config) {
         frameworks: ['jasmine', 'requirejs'],
 
         files: [
-            {pattern: 'test/unit/require.conf.js', include: true},
-            {pattern: 'src/client/lib/*.js', include: false},
-            {pattern: 'test/unit/lib/*.js', include: false},
-            {pattern: 'src/client/component/**/*.js', include: false},
-            {pattern: 'src/client/component/**/*.html', include: false},
-            {pattern: 'test/unit/tests/component/*.js', include: false}
+            {pattern: 'test/unit/require.conf.js', included: true},
+            {pattern: 'src/client/lib/*.js', included: false},
+            {pattern: 'test/unit/lib/*.js', included: false},
+            {pattern: 'src/client/component/**/*.js', included: false},
+            {pattern: 'src/client/component/**/*.html', included: false},
+            {pattern: 'test/unit/tests/component/*.js', included: false}
         ],
 
         plugins: [
@@ -24,7 +24,7 @@ module.exports = function(config) {
             'karma-ie-launcher'
         ],
 
-        reporters: ['coverage'],
+        reporters: ['coverage', 'progress'],
 
         preprocessors: {
             'src/client/component/**/*.js': ['coverage']

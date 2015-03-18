@@ -24,10 +24,10 @@ define([
                 scope = $injector.get('$rootScope').$new();
                 var $controller = $injector.get('$controller');
 
-                getGlobalCounterRequestHandler = httpBackend.whenPOST( 'api/v1/counter/getGlobalCounter').respond({counter: 0});
-                incrementGlobalCounterRequestHandler = httpBackend.whenPOST( 'api/v1/counter/incrementGlobalCounter').respond({counter: 1});
-                getMyCounterRequestHandler = httpBackend.whenPOST( 'api/v1/counter/getMyCounter').respond({counter: 0});
-                incrementMyCounterRequestHandler = httpBackend.whenPOST( 'api/v1/counter/incrementMyCounter').respond({counter: 1});
+                getGlobalCounterRequestHandler = httpBackend.whenPOST('api/v1/counter/getGlobalCounter').respond({value: 0});
+                incrementGlobalCounterRequestHandler = httpBackend.whenPOST('api/v1/counter/incrementGlobalCounter').respond({value: 1});
+                getMyCounterRequestHandler = httpBackend.whenPOST('api/v1/counter/getMyCounter').respond({value: 0});
+                incrementMyCounterRequestHandler = httpBackend.whenPOST('api/v1/counter/incrementMyCounter').respond({value: 1});
 
                 createController = function(){
                     return $controller('counterCtrl', {'$scope': scope});
@@ -52,7 +52,7 @@ define([
         it('should get global counter', function(){
             createController();
             httpBackend.flush();
-            getGlobalCounterRequestHandler.respond({counter: 123});
+            getGlobalCounterRequestHandler.respond({value: 123});
             httpBackend.expectPOST('api/v1/counter/getGlobalCounter');
             scope.getGlobalCounter();
             httpBackend.flush()
@@ -62,7 +62,7 @@ define([
         it('should get my counter', function(){
             createController();
             httpBackend.flush();
-            getMyCounterRequestHandler.respond({counter: 123});
+            getMyCounterRequestHandler.respond({value: 123});
             httpBackend.expectPOST('api/v1/counter/getMyCounter');
             scope.getMyCounter();
             httpBackend.flush();
@@ -72,7 +72,7 @@ define([
         it('should increment global counter', function(){
             createController();
             httpBackend.flush();
-            incrementGlobalCounterRequestHandler.respond({counter: 123});
+            incrementGlobalCounterRequestHandler.respond({value: 123});
             httpBackend.expectPOST('api/v1/counter/incrementGlobalCounter');
             scope.incrementGlobalCounter();
             httpBackend.flush();
@@ -82,7 +82,7 @@ define([
         it('should increment my counter', function(){
             createController();
             httpBackend.flush();
-            incrementMyCounterRequestHandler.respond({counter: 123});
+            incrementMyCounterRequestHandler.respond({value: 123});
             httpBackend.expectPOST('api/v1/counter/incrementMyCounter');
             scope.incrementMyCounter();
             httpBackend.flush();

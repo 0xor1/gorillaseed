@@ -18,4 +18,4 @@ requirejs.config({
     callback: window.__karma__.start
 });
 
-require(['ng', 'text', 'ngMock'], function(){});
+require(['ng', 'text', 'ngMock'], function(ng, text, ngMock){});

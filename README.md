@@ -1,19 +1,39 @@
 gorillaseed
 ============
 
-##Setup
+A simple seed project for a single page web app written with [**Angular**](https://angularjs.org/), [**Require**](http://requirejs.org/)
+and [**SCSS**](http://sass-lang.com/) on the client side and [**Go**](http://golang.org/) with [**Gorilla Toolkit**](http://www.gorillatoolkit.org/)
+on the server side. The seed project comes chock full with goodies:
+
+* Automated build tasks
+* Server side unit tests
+* Client side unit tests
+* End-to-End tests
+
+##Setup Checklist
 
 1. Install:
     * [Go](http://golang.org/)
     * [Node](https://nodejs.org/)
+    * [Ruby](https://www.ruby-lang.org)
 
 2. Create the directory `$GOPATH/github.com/0xor1/gorillaseed` and check this repo out into it
 
-3. Run `npm install`
+3. `cd` to `$GOPATH/github.com/0xor1/gorillaseed` and run:
 
-4. `cd` to `src/server` and run `go build` then run `server.exe`
+```sh
+    npm install
+    npm install -g karma
+    npm install -g protractor
+    webdriver-manager update
+    npm install -g grunt-cli
+    gem install compass
+```
 
-5. You will require some sort of local request redirection ([Fiddler](http://www.telerik.com/fiddler) is a good tool for this) to send `gorillaseed.net` to `127.0.0.1:8080`
+4. Local request redirection is required, for local development, ([Fiddler](http://www.telerik.com/fiddler) is a good tool for this) to send `gorillaseed.net` to `127.0.0.1:8080`
 
-6. Open a browser and enter `gorillaseed.net` into the address bar. If you see a valid site with the heading **gorillaseed**, congratz you're now setup and running. If you get a **404** or other error, better luck next time ;)
+##Common Tasks
 
+There is a grunt task to cover all the basic requirements of development:
+
+//TBC

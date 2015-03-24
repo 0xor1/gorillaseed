@@ -23,13 +23,29 @@ module.exports = function(grunt){
                     }
                 }
             }
+        },
+
+        exec: {
+            buildserver: {
+                cmd: 'go build -o src/server/server.exe -v src/server/server.go'
+            }
+        },
+
+        copy: {
+            buildserver: {
+                src: 'src/server/server.exe',
+                dest: 'build/server/server.exe'
+            }
         }
 
     });
 
     grunt.loadNpmTasks('grunt-contrib-requirejs');
+    grunt.loadNpmTasks('grunt-exec');
+    grunt.loadNpmTasks('grunt-contrib-copy');
 
     grunt.registerTask('default', ['nuke']);
     grunt.registerTask('buildjs', ['requirejs']);
+    grunt.registerTask('buildserver', ['exec:buildserver', 'copy:buildserver']);
 
 };

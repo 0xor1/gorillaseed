@@ -11,7 +11,7 @@ module.exports = function(grunt){
                     include: '../main',
                     findNestedDependencies: true,
                     optimize: 'none',
-                    out: 'build/client/main.dev.js',
+                    out: 'build/client/main.js',
                     onModuleBundleComplete: function (data) {
                         var fs = require('fs'),
                             amdclean = require('amdclean'),
@@ -44,7 +44,6 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-contrib-copy');
 
-    grunt.registerTask('default', ['nuke']);
     grunt.registerTask('buildjs', ['requirejs']);
     grunt.registerTask('buildserver', ['exec:buildserver', 'copy:buildserver']);
 

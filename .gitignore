@@ -1,6 +1,5 @@
-*.css
-*.exe
-build/
+src/**/*.css
+src/**/*.exe
 .idea/
 node_modules/
 npm-debug.log

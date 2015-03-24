@@ -14,7 +14,9 @@
   },
   "license": "MIT",
   "devDependencies": {
+    "amdclean": "^2.4.0",
     "grunt": "^0.4.5",
+    "grunt-contrib-requirejs": "^0.4.4",
     "karma": "^0.12.16",
     "karma-chrome-launcher": "^0.1.4",
     "karma-coverage": "^0.2.7",

@@ -30,6 +30,10 @@ on the server side. The seed project comes chock full with goodies:
 
 ##Common Tasks
 
-There is a grunt task to cover all the basic requirements of development:
+There is a grunt task to cover all the basic requirements of development, run the following commands as `grunt <cmd>`:
 
-//TBC
+* `buildServer` will build the server and copy the resulting server.exe to `build\server`
+* `buildClient` will write the index.html file to `build\client` with the compiled and minified js inlined and stripped of its amd loading code
+* `buildAll` is a convenience command that simply chains the above commands.
+
+...More coming soon...

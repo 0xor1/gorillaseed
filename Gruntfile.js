@@ -73,5 +73,6 @@ module.exports = function(grunt){
 
     grunt.registerTask('buildServer', ['exec:buildServer', 'copy:serverExe']);
     grunt.registerTask('buildClient', ['requirejs:compile', 'uglify:mainJsBuild', 'copy:clientIndex', 'processhtml:clientIndex', 'clean:mainJsBuild']);
+    grunt.registerTask('buildAll', ['buildServer', 'buildClient']);
 
 };

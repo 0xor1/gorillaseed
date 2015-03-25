@@ -26,16 +26,40 @@ module.exports = function(grunt){
         },
 
         exec: {
-            buildserver: {
+            buildServer: {
                 cmd: 'go build -o src/server/server.exe -v src/server/server.go'
             }
         },
 
         copy: {
-            buildserver: {
+            serverExe: {
                 src: 'src/server/server.exe',
                 dest: 'build/server/server.exe'
+            },
+            clientIndex: {
+                src: 'src/client/index.html',
+                dest: 'build/client/index.html'
             }
+        },
+
+        processhtml: {
+            clientIndex: {
+                files: {
+                    'build/client/index.html': ['build/client/index.html']
+                }
+            }
+        },
+
+        uglify: {
+            mainJsBuild: {
+                files: {
+                    'build/client/main.js': ['build/client/main.js']
+                }
+            }
+        },
+
+        clean: {
+            mainJsBuild: ['build/client/main.js']
         }
 
     });
@@ -43,8 +67,11 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-exec');
     grunt.loadNpmTasks('grunt-contrib-copy');
+    grunt.loadNpmTasks('grunt-processhtml');
+    grunt.loadNpmTasks('grunt-contrib-uglify');
+    grunt.loadNpmTasks('grunt-contrib-clean');
 
-    grunt.registerTask('buildjs', ['requirejs']);
-    grunt.registerTask('buildserver', ['exec:buildserver', 'copy:buildserver']);
+    grunt.registerTask('buildServer', ['exec:buildServer', 'copy:serverExe']);
+    grunt.registerTask('buildClient', ['requirejs:compile', 'uglify:mainJsBuild', 'copy:clientIndex', 'processhtml:clientIndex', 'clean:mainJsBuild']);
 
 };

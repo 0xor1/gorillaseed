@@ -36,19 +36,19 @@ There is a grunt task to cover all the basic requirements of development, run th
 * `buildServer` will build the server and copy the resulting server.exe to `build\server`
 * **TODO** ~~`testServer` will run all the server unit tests and drop the results and coverage reports in `test\unit\server`~~
 * `cleanServerBuild` will delete all generated files from running `buildServer`
-* **TODO** ~~`cleanServerTest` will delete all generated files from running `testServer`~~
+* `cleanServerTest` will delete all generated files from running `testServer`
 
 
 * `buildClient` will write the index.html file to `build\client` with the concatenated and minified css and js inlined and stripped of its AMD loading code
 * **TODO** ~~`testClient` will run all the client unit tests and drop the results and coverage reports in `test\unit\client`~~
 * `cleanClientBuild` will delete all generated files from running `buildClient`
-* **TODO** ~~`cleanClientTest` will delete all generated files from running `testClient`~~
+* `cleanClientTest` will delete all generated files from running `testClient`
 
 
 * `buildAll` is a convenience command that simply chains `buildServer` and `buildClient`
 * **TODO** ~~`testAll` is a convenience command that simply chains `testServer` and `testClient`~~
 * `cleanAllBuild` is a convenience command that simply chains `cleanServerBuild` and `cleanClientBuild`
-* **TODO** ~~`cleanAllTest` is a convenience command that simply chains `cleanServerTest` and `cleanClientTest`~~
+* `cleanAllTest` is a convenience command that simply chains `cleanServerTest` and `cleanClientTest`
 
 
 * **TODO** ~~`runCompass` will run compass compilation of all scss files in the `src\client` directory~~

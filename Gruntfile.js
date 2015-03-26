@@ -60,8 +60,12 @@ module.exports = function(grunt){
 
         clean: {
             mainJsBuild: ['build/client/main.js'],
+
             serverBuild: ['build/server', 'src/server/server.exe'],
-            clientBuild: ['build/client']
+            serverTest: ['test/unit/server/*'],
+
+            clientBuild: ['build/client'],
+            clientTest: ['test/unit/client/coverage/*','test/unit/client/results/*']
         }
 
     });
@@ -75,11 +79,14 @@ module.exports = function(grunt){
 
     grunt.registerTask('buildServer', ['exec:buildServer', 'copy:serverExe']);
     grunt.registerTask('cleanServerBuild', ['clean:serverBuild']);
+    grunt.registerTask('cleanServerTest', ['clean:serverTest']);
 
     grunt.registerTask('buildClient', ['requirejs:compile', 'uglify:mainJsBuild', 'copy:clientIndex', 'processhtml:clientIndex', 'clean:mainJsBuild']);
     grunt.registerTask('cleanClientBuild', ['clean:clientBuild']);
+    grunt.registerTask('cleanClientTest', ['clean:clientTest']);
 
     grunt.registerTask('buildAll', ['buildServer', 'buildClient']);
     grunt.registerTask('cleanAllBuild', ['cleanServerBuild', 'cleanClientBuild']);
+    grunt.registerTask('cleanAllTest', ['cleanServerTest', 'cleanClientTest']);
 
 };

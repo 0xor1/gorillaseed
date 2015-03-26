@@ -29,6 +29,10 @@ the css and js files and then inline them into the index.html file. The seed pro
 
 4. Local request redirection is required, for local development, ([Fiddler](http://www.telerik.com/fiddler) is a good tool for this) to send `gorillaseed.net` to `127.0.0.1:8080`
 
+5. Run the grunt tasks `buildServer` then `startDevServer`
+
+6. Open a browser and navigate to `gorillaseed.net`, if you are looking at a web page with some buttons on, congratz everything worked.
+
 ##Common Tasks
 
 There is a grunt task to cover all the basic requirements of development, run the following commands as `grunt <cmd>`:

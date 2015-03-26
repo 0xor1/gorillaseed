@@ -45,23 +45,24 @@ There is a grunt task to cover all the basic requirements of development, run th
 * `cleanClientTest` will delete all generated files from running `testClient`
 
 
-* `buildAll` is a convenience command that simply chains `buildServer` and `buildClient`
-* **TODO** ~~`testAll` is a convenience command that simply chains `testServer` and `testClient`~~
-* `cleanAllBuild` is a convenience command that simply chains `cleanServerBuild` and `cleanClientBuild`
-* `cleanAllTest` is a convenience command that simply chains `cleanServerTest` and `cleanClientTest`
+* `buildAll` is a convenience command for `buildServer` and `buildClient`
+* `testAll` is a convenience command for `testServer` and `testClient`
+* `cleanAllBuild` is a convenience command for `cleanServerBuild` and `cleanClientBuild`
+* `cleanAllTest` is a convenience command for `cleanServerTest` and `cleanClientTest`
 
 
-* **TODO** ~~`runCompass` will run compass compilation of all scss files in the `src\client` directory~~
+* **TODO** ~~`watchScss` will start compass auto compilation of all scss files in the `src\client` directory~~
+* `cleanScss` will delete all **css** files in `src\client`
 
 
-* **TODO** ~~`runDev` will start the `server.exe` in the `src\server` directory~~
-* **TODO** ~~`runBuild` will start the `server.exe` in the `build\server` directory~~
+* `startDevServer` will start the `server.exe` in the `src\server` directory
+* `startBuildServer` will start the `server.exe` in the `build\server` directory
 
 
 * **TODO** ~~`testE2e` will run all the end to end tests and drop the results and coverage reports in `test\e2e`~~
-* **TODO** ~~`cleanE2e` will delete all generated files from running `testE2e`~~
+* `cleanE2e` will delete all generated files from running `testE2e`
 
 
-* **TODO** ~~`nuke` will delete all build and test task generated files and all css files~~
+* `nuke` is a convenience command for `cleanAllBuild`, `cleanAllTest`, `cleanScss` and `cleanE2e`
 
 

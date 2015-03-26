@@ -3,9 +3,10 @@ gorillaseed
 
 A simple seed project for a single page web app written with [**Angular**](https://angularjs.org/), [**Require**](http://requirejs.org/)
 and [**SCSS**](http://sass-lang.com/) on the client side and [**Go**](http://golang.org/) with [**Gorilla Toolkit**](http://www.gorillatoolkit.org/)
-on the server side. The seed project comes chock full with goodies:
+on the server side. The seed project is configured as a true single page web app in that the build scripts will concat and minify all
+the css and js files and then inline them into the index.html file. The seed project comes chock full with goodies:
 
-* Automated build tasks
+* Automated build and testing tasks
 * Server side unit tests
 * Client side unit tests
 * End-to-End tests
@@ -33,7 +34,23 @@ on the server side. The seed project comes chock full with goodies:
 There is a grunt task to cover all the basic requirements of development, run the following commands as `grunt <cmd>`:
 
 * `buildServer` will build the server and copy the resulting server.exe to `build\server`
-* `buildClient` will write the index.html file to `build\client` with the compiled and minified js inlined and stripped of its amd loading code
-* `buildAll` is a convenience command that simply chains the above commands.
+* **TODO** ~~`testServer` will run all the server unit tests and drop the results and coverage reports in `test\unit\server`~~
+* **TODO** ~~`cleanServer` will delete all generated files from running `buildServer` and `testServer`~~
 
-...More coming soon...
+
+* `buildClient` will write the index.html file to `build\client` with the compiled and minified js inlined and stripped of its AMD loading code
+* **TODO** ~~`testClient` will run all the client unit tests and drop the results and coverage reports in `test\unit\client`~~
+* **TODO** ~~`cleanClient` will delete all generated files from running `buildClient` and `testClient`~~
+
+
+* **TODO** ~~`testE2e` will run all the end to end tests and drop the results and coverage reports in `test\e2e`~~
+* **TODO** ~~`cleanE2e` will delete all generated files from running `testE2e`~~
+
+
+* **TODO** ~~`runDev` will start the server.exe in the src directory~~
+* **TODO** ~~`runBuild` will start the server.exe in the build directory~~
+
+
+* `buildAll` is a convenience command that simply chains `buildServer` and `buildClient`
+* **TODO** ~~`testAll` is a convenience command that simply chains `testServer`, `testClient`, `testE2e`~~
+* **TODO** ~~`cleanAll` is a convenience command that simply chains `cleanServer`, `cleanClient`, `cleanE2e`~~

@@ -30,10 +30,10 @@ module.exports = function(grunt){
                 cmd: 'go build -o src/server/server.exe -v src/server/server.go'
             },
             startDevServer: {
-                cmd: 'cd src/server & server.exe'
+                cmd: 'cd src/server && server.exe'
             },
             startBuildServer: {
-                cmd: 'cd build/server & server.exe'
+                cmd: 'cd build/server && server.exe'
             }
         },
 

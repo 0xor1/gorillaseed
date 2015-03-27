@@ -1,5 +1,6 @@
 src/**/*.css
 src/**/*.exe
+build/
 .idea/
 node_modules/
 npm-debug.log

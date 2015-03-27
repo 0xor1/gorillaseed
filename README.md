@@ -44,7 +44,7 @@ There is a grunt task to cover all the basic requirements of development, run th
 
 
 * `buildClient` will write the index.html file to `build\client` with the concatenated and minified css and js inlined and stripped of its AMD loading code
-* **TODO** ~~`testClient` will run all the client unit tests and drop the results and coverage reports in `test\unit\client`~~
+* `testClient` will run all the client unit tests and drop the results and coverage reports in `test\unit\client`
 * `cleanClientBuild` will delete all generated files from running `buildClient`
 * `cleanClientTest` will delete all generated files from running `testClient`
 

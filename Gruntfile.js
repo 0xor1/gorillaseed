@@ -34,6 +34,9 @@ module.exports = function(grunt){
             },
             startBuildServer: {
                 cmd: 'cd build/server && server.exe'
+            },
+            testClient: {
+                cmd: 'cd test/unit/client && karma start'
             }
         },
 
@@ -89,7 +92,7 @@ module.exports = function(grunt){
     grunt.registerTask('cleanServerTest', ['clean:serverTest']);
 
     grunt.registerTask('buildClient', ['requirejs:compile', 'uglify:mainJsBuild', 'copy:clientIndex', 'processhtml:clientIndex', 'clean:mainJsBuild']);
-    grunt.registerTask('testClient', [/*TODO*/]);
+    grunt.registerTask('testClient', ['exec:testClient']);
     grunt.registerTask('cleanClientBuild', ['clean:clientBuild']);
     grunt.registerTask('cleanClientTest', ['clean:clientTest']);
 

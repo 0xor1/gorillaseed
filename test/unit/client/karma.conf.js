@@ -50,6 +50,6 @@ module.exports = function(config) {
 
         captureTimeout: 5000,
 
-        singleRun: false
+        singleRun: true
     });
 };

@@ -1,8 +1,10 @@
 define([
     'ng',
+    'ngMock',
     'counter/ctrl'
 ], function(
     ng,
+    ngMock,
     counterCtrl
 ){
     counterCtrl(ng.module('testApp', []));

@@ -31,7 +31,8 @@
     "karma-jasmine": "^0.1.5",
     "karma-requirejs": "^0.2.2",
     "karma-safari-launcher": "^0.1.1",
-    "protractor": "~1.0.0",
+    "protractor": "~2.0.0",
+    "protractor-screenshot-reporter": "0.0.5",
     "requirejs": "^2.1.16"
   }
 }

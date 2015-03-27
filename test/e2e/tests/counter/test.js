@@ -2,7 +2,7 @@ var page = require('./page.js');
 
 'use strict';
 
-describe('Counter', function() {
+describe('counter', function() {
 
     beforeEach(function(){
         page.get();

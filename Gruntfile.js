@@ -37,6 +37,9 @@ module.exports = function(grunt){
             },
             testClient: {
                 cmd: 'cd test/unit/client && node ../../../node_modules/karma/bin/karma start'
+            },
+            testE2e: {
+                cmd: 'cd test/e2e && node ../../node_modules/protractor/bin/protractor protractor.conf.js'
             }
         },
 
@@ -107,7 +110,7 @@ module.exports = function(grunt){
     grunt.registerTask('startDevServer', ['exec:startDevServer']);
     grunt.registerTask('startBuildServer', ['exec:startBuildServer']);
 
-    grunt.registerTask('testE2e', [/*TODO*/]);
+    grunt.registerTask('testE2e', ['exec:testE2e']);
     grunt.registerTask('cleanE2e', ['clean:e2e']);
 
     grunt.registerTask('nuke', ['cleanAllBuild', 'cleanAllTest', 'cleanScss', 'cleanE2e']);

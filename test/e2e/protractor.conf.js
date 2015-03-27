@@ -1,3 +1,6 @@
+var ScreenshotReporter = require('protractor-screenshot-reporter');
+var path = require('path');
+
 exports.config = {
     baseUrl: 'http://gorillaseed.net',
 
@@ -28,5 +31,15 @@ exports.config = {
         showColors: true,
         includeStackTrace: true,
         defaultTimeoutInterval: 30000
+    },
+
+    onPrepare: function(){
+        jasmine.getEnv().addReporter(new ScreenshotReporter({
+            baseDirectory: 'results',
+            //takeScreenShotsOnlyForFailedSpecs: true,
+            pathBuilder: function pathBuilder(spec, descriptions, results, capabilities) {
+                return path.join(capabilities.caps_.browserName, spec.suite.description, spec.env.currentSpec.description);
+            }
+        }));
     }
 };

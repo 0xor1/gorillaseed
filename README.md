@@ -63,6 +63,10 @@ There is a grunt task to cover all the basic requirements of development, run th
 * `startBuildServer` will start the `server.exe` in the `build\server` directory
 
 
+* `updateSeleniumServer` will run `webdriver-manager update`
+* `startSeleniumServer` will run `webdriver-manager start`
+
+
 * `testE2e` will run all the end to end tests and drop the results reports in `test\e2e\results`
 * `cleanE2e` will delete all generated files from running `testE2e`
 

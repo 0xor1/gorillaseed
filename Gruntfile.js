@@ -35,6 +35,12 @@ module.exports = function(grunt){
             startBuildServer: {
                 cmd: 'cd build/server && server.exe'
             },
+            updateSeleniumServer: {
+                cmd: 'node node_modules/protractor/bin/webdriver-manager update'
+            },
+            startSeleniumServer: {
+                cmd: 'node node_modules/protractor/bin/webdriver-manager start'
+            },
             testClient: {
                 cmd: 'cd test/unit/client && node ../../../node_modules/karma/bin/karma start'
             },
@@ -109,6 +115,9 @@ module.exports = function(grunt){
 
     grunt.registerTask('startDevServer', ['exec:startDevServer']);
     grunt.registerTask('startBuildServer', ['exec:startBuildServer']);
+
+    grunt.registerTask('updateSeleniumServer', ['exec:updateSeleniumServer']);
+    grunt.registerTask('startSeleniumServer', ['exec:startSeleniumServer']);
 
     grunt.registerTask('testE2e', ['exec:testE2e']);
     grunt.registerTask('cleanE2e', ['clean:e2e']);

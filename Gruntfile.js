@@ -36,7 +36,7 @@ module.exports = function(grunt){
                 cmd: 'cd build/server && server.exe'
             },
             testClient: {
-                cmd: 'cd test/unit/client && karma start'
+                cmd: 'cd test/unit/client && node ../../../node_modules/karma/bin/karma start'
             }
         },
 

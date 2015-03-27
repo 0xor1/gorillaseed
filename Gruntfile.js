@@ -83,7 +83,7 @@ module.exports = function(grunt){
             clientBuild: ['build/client'],
             clientTest: ['test/unit/client/coverage/*','test/unit/client/results/*'],
             scss: ['src/client/**/*css'],
-            e2e: ['test/e2e/coverage/*','test/e2e/results/*']
+            e2e: ['test/e2e/results/*']
         }
 
     });

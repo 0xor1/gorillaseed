@@ -62,6 +62,14 @@ module.exports = function(grunt){
             clientIndex: {
                 src: 'src/client/index.html',
                 dest: 'build/client/index.html'
+            },
+            clientAppCache: {
+                src: 'src/client/app.appcache',
+                dest: 'build/client/app.appcache'
+            },
+            styleBuild: {
+                src: 'src/client/style.css',
+                dest: 'build/client/style.css'
             }
         },
 
@@ -83,11 +91,12 @@ module.exports = function(grunt){
 
         clean: {
             mainJsBuild: ['build/client/main.js'],
+            styleBuild: ['build/client/style.css'],
             serverBuild: ['build/server', 'src/server/server.exe'],
             serverTest: ['test/unit/server/*'],
             clientBuild: ['build/client'],
             clientTest: ['test/unit/client/coverage/*','test/unit/client/results/*'],
-            scss: ['src/client/**/*css'],
+            sass: ['src/client/**/*css'],
             e2e: ['test/e2e/results/*'],
             serverTmpTestFiles: ['src/server/*.out', 'src/server/src/**/*.out']
         },
@@ -116,6 +125,18 @@ module.exports = function(grunt){
                 },
                 src: ['src/server/coverage.out', 'src/server/src/**/coverage.out'],
                 dest: 'test/unit/server/coverage.out'
+            }
+        },
+
+        compass: {
+            dev: {
+                options: {
+                    outputStyle: 'compressed',
+                    cssPath: 'src/client',
+                    sassPath: 'src/client',
+                    watch: true,
+                    trace: true
+                }
             }
         }
     });
@@ -171,6 +192,7 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-clean');
     grunt.loadNpmTasks('grunt-contrib-concat');
+    grunt.loadNpmTasks('grunt-contrib-compass');
 
     grunt.registerTask('buildServer', ['exec:buildServer', 'copy:serverExe']);
     grunt.registerTask('_runServerTests', _runServerTests);
@@ -178,7 +200,7 @@ module.exports = function(grunt){
     grunt.registerTask('cleanServerBuild', ['clean:serverBuild']);
     grunt.registerTask('cleanServerTest', ['clean:serverTest']);
 
-    grunt.registerTask('buildClient', ['requirejs:compile', 'uglify:mainJsBuild', 'copy:clientIndex', 'processhtml:clientIndex', 'clean:mainJsBuild']);
+    grunt.registerTask('buildClient', ['requirejs:compile', 'uglify:mainJsBuild', 'copy:clientAppCache', 'copy:styleBuild', 'copy:clientIndex', 'processhtml:clientIndex', 'clean:mainJsBuild', 'clean:styleBuild']);
     grunt.registerTask('testClient', ['exec:testClient']);
     grunt.registerTask('cleanClientBuild', ['clean:clientBuild']);
     grunt.registerTask('cleanClientTest', ['clean:clientTest']);
@@ -188,8 +210,8 @@ module.exports = function(grunt){
     grunt.registerTask('cleanAllBuild', ['cleanServerBuild', 'cleanClientBuild']);
     grunt.registerTask('cleanAllTest', ['cleanServerTest', 'cleanClientTest']);
 
-    grunt.registerTask('watchScss', [/*TODO*/]);
-    grunt.registerTask('cleanScss', ['clean:scss']);
+    grunt.registerTask('watchSass', ['compass:dev']);
+    grunt.registerTask('cleanSass', ['clean:sass']);
 
     grunt.registerTask('startDevServer', ['exec:startDevServer']);
     grunt.registerTask('startBuildServer', ['exec:startBuildServer']);
@@ -200,6 +222,6 @@ module.exports = function(grunt){
     grunt.registerTask('testE2e', ['exec:testE2e']);
     grunt.registerTask('cleanE2e', ['clean:e2e']);
 
-    grunt.registerTask('nuke', ['cleanAllBuild', 'cleanAllTest', 'cleanScss', 'cleanE2e']);
+    grunt.registerTask('nuke', ['cleanAllBuild', 'cleanAllTest', 'cleanSass', 'cleanE2e']);
 
 };

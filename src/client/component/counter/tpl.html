@@ -1,8 +1,8 @@
-<div ng-controller="counterCtrl">
-    <p>Global Counter: {{globalCounter}}</p>
+<div class="cp-counter" ng-controller="counterCtrl">
+    <p>Global Counter: <span class="global-counter">{{globalCounter}}</span></p>
     <button ng-click="getGlobalCounter()">Refresh Global Counter</button>
     <button ng-click="incrementGlobalCounter()">Increment Global Counter</button>
-    <p>My Counter: {{myCounter}}</p>
+    <p>My Counter: <span class="my-counter">{{myCounter}}</span></p>
     <button ng-click="getMyCounter()">Refresh My Counter</button>
     <button ng-click="incrementMyCounter()">Increment My Counter</button>
 </div>

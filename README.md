@@ -2,7 +2,7 @@ gorillaseed
 ============
 
 A simple seed project for a single page web app written with [**Angular**](https://angularjs.org/), [**Require**](http://requirejs.org/)
-and [**SCSS**](http://sass-lang.com/) on the client side and [**Go**](http://golang.org/) with [**Gorilla Toolkit**](http://www.gorillatoolkit.org/)
+and [**SASS**](http://sass-lang.com/) on the client side and [**Go**](http://golang.org/) with [**Gorilla Toolkit**](http://www.gorillatoolkit.org/)
 on the server side. The seed project is configured as a true single page web app in that the build scripts will concat and minify all
 the css and js files and then inline them into the index.html file. The seed project comes chock full with goodies:
 
@@ -55,8 +55,8 @@ There is a grunt task to cover all the basic requirements of development, run th
 * `cleanAllTest` is a convenience command for `cleanServerTest` and `cleanClientTest`
 
 
-* **TODO** ~~`watchScss` will start compass auto compilation of all scss files in the `src\client` directory~~
-* `cleanScss` will delete all **css** files in `src\client`
+* `watchSass` will start compass auto compilation of all sass files in the `src\client` directory
+* `cleanSass` will delete all **css** files in `src\client`
 
 
 * `startDevServer` will start the `server.exe` in the `src\server` directory
@@ -71,6 +71,6 @@ There is a grunt task to cover all the basic requirements of development, run th
 * `cleanE2e` will delete all generated files from running `testE2e`
 
 
-* `nuke` is a convenience command for `cleanAllBuild`, `cleanAllTest`, `cleanScss` and `cleanE2e`
+* `nuke` is a convenience command for `cleanAllBuild`, `cleanAllTest`, `cleanSass` and `cleanE2e`
 
 

@@ -1,0 +1,10 @@
+@import "../../global";
+
+.cp-counter{
+  .global-counter{
+    color: $global;
+  }
+  .my-counter{
+    color: $my;
+  }
+}

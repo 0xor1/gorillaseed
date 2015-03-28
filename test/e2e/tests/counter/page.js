@@ -5,8 +5,7 @@ module.exports = {
 
     getGlobalCounter: function(){
         var deferred = protractor.promise.defer();
-        element(by.binding('globalCounter')).getText().then(function(str){
-            var val = str.split(': ')[1]
+        element(by.binding('globalCounter')).getText().then(function(val){
             deferred.fulfill(parseInt(val));
         });
         return deferred.promise;
@@ -22,8 +21,7 @@ module.exports = {
 
     getMyCounter: function(){
         var deferred = protractor.promise.defer();
-        element(by.binding('myCounter')).getText().then(function(str){
-            var val = str.split(': ')[1]
+        element(by.binding('myCounter')).getText().then(function(val){
             deferred.fulfill(parseInt(val));
         });
         return deferred.promise;

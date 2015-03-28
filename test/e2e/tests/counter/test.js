@@ -9,11 +9,11 @@ describe('counter', function() {
     });
 
     it('should initialise global counter to a number', function() {
-        expect(element(by.binding('globalCounter')).getText()).toMatch(/Global Counter: [0-9]*/);
+        expect(element(by.binding('globalCounter')).getText()).toMatch(/[0-9]+/);
     });
 
     it('should initialise my counter to a number', function() {
-        expect(element(by.binding('myCounter')).getText()).toMatch(/My Counter: [0-9]*/);
+        expect(element(by.binding('myCounter')).getText()).toMatch(/[0-9]+/);
     });
 
     it('should refresh global counter', function() {

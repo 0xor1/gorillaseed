@@ -43,7 +43,8 @@ There is a grunt task to cover all the basic requirements of development, run th
 * `cleanServerTest` will delete all generated files from running `testServer`
 
 
-* `buildClient` will write the index.html file to `build\client` with the concatenated and minified css and js inlined and stripped of its AMD loading code
+* `buildClient` will write the index.html file to `build\client` with the concatenated and minified css and js inlined and stripped of its AMD loading code.
+  It should be noted that this task copies the existing root style.css file to the build folder for inlining, so any Sass changes need to have completed compilation before this task is run
 * `testClient` will run all the client unit tests and drop the results and coverage reports in `test\unit\client`
 * `cleanClientBuild` will delete all generated files from running `buildClient`
 * `cleanClientTest` will delete all generated files from running `testClient`

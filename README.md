@@ -15,7 +15,7 @@ the css and js files and then inline them into the index.html file. The seed pro
 
 1. Install:
     * [Go](http://golang.org/)
-    * [Node](https://nodejs.org/)
+    * [Node](https://nodejs.org/) v0.12.*
     * [Ruby](https://www.ruby-lang.org)
         * [Compass](http://compass-style.org/)
 
@@ -38,7 +38,7 @@ the css and js files and then inline them into the index.html file. The seed pro
 There is a grunt task to cover all the basic requirements of development, run the following commands as `grunt <cmd>`:
 
 * `buildServer` will build the server and copy the resulting server.exe to `build\server`
-* **TODO** ~~`testServer` will run all the server unit tests and drop the results and coverage reports in `test\unit\server`~~
+* `testServer` will run all the server unit tests and drop the results and coverage reports in `test\unit\server`
 * `cleanServerBuild` will delete all generated files from running `buildServer`
 * `cleanServerTest` will delete all generated files from running `testServer`
 

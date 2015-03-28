@@ -1,5 +1,7 @@
 module.exports = function(grunt){
 
+    var firstPass = true;
+
     grunt.initConfig({
 
         pkg: grunt.file.readJSON('package.json'),
@@ -46,6 +48,9 @@ module.exports = function(grunt){
             },
             testE2e: {
                 cmd: 'cd test/e2e && node ../../node_modules/protractor/bin/protractor protractor.conf.js'
+            },
+            generateHtmlServerCoverageReport: {
+                cmd: 'cd test/unit/server && go tool cover -html=coverage.out -o=coverage.html'
             }
         },
 
@@ -83,10 +88,81 @@ module.exports = function(grunt){
             clientBuild: ['build/client'],
             clientTest: ['test/unit/client/coverage/*','test/unit/client/results/*'],
             scss: ['src/client/**/*css'],
-            e2e: ['test/e2e/results/*']
-        }
+            e2e: ['test/e2e/results/*'],
+            serverTmpTestFiles: ['src/server/*.out', 'src/server/src/**/*.out']
+        },
 
+        concat: {
+            serverTmpTestFilesResults: {
+                options: {
+                    separator: '\n\n'
+                },
+                src: ['src/server/results.out', 'src/server/src/**/results.out'],
+                dest: 'test/unit/server/results.out'
+            },
+            serverTmpTestFilesCoverage: {
+                options: {
+                    process: function(src, path){
+                        var lastIdx = src.lastIndexOf('\n');
+                        if(lastIdx !== src.length - 1){
+                            lastIdx = src.length;
+                        }
+                        if(firstPass) {
+                            firstPass = false;
+                            return src.substring(0, lastIdx);
+                        }
+                        return src.substring(src.indexOf('\n') + 1, lastIdx);
+                    }
+                },
+                src: ['src/server/coverage.out', 'src/server/src/**/coverage.out'],
+                dest: 'test/unit/server/coverage.out'
+            }
+        }
     });
+
+    function _runServerTests(){
+
+        var fs = require('fs'),
+            cp = require('child_process'),
+            exec = function(path, recursive){
+                if(dirContainsTests(path)){
+                    execTests(path);
+                }
+                if(recursive){
+                    execTestsInSubDirs(path, recursive);
+                }
+            },
+            dirContainsTests = function(path){
+                var files = fs.readdirSync(path);
+                for(var i = 0; i < files.length; i++){
+                    var fileName = files[i];
+                    if(fs.statSync(path + '/' + fileName).isFile() && fileName.indexOf('_test.go') > 0){
+                        return true;
+                    }
+                }
+                return false;
+            },
+            execTests = function(path){
+                grunt.log.writeln('Executing go tests in: ' + path);
+                try {
+                    cp.execSync('cd ' + path + ' && go test -coverprofile=coverage.out > results.out');
+                }catch(ex){
+                    //if a test fails we need to have this try catch to ensure we continue to run the rest of the tests.
+                }
+            },
+            execTestsInSubDirs = function(path, recursive){
+                var files = fs.readdirSync(path);
+                for(var i = 0; i < files.length; i++){
+                    var fileName = files[i];
+                    if(fs.statSync(path + '/' + fileName).isDirectory()){
+                        exec(path + '/' + fileName, recursive);
+                    }
+                }
+            };
+
+        exec('src/server', false);
+        exec('src/server/src', true);
+    }
 
     grunt.loadNpmTasks('grunt-contrib-requirejs');
     grunt.loadNpmTasks('grunt-exec');
@@ -94,9 +170,11 @@ module.exports = function(grunt){
     grunt.loadNpmTasks('grunt-processhtml');
     grunt.loadNpmTasks('grunt-contrib-uglify');
     grunt.loadNpmTasks('grunt-contrib-clean');
+    grunt.loadNpmTasks('grunt-contrib-concat');
 
     grunt.registerTask('buildServer', ['exec:buildServer', 'copy:serverExe']);
-    grunt.registerTask('testServer', [/*TODO*/]);
+    grunt.registerTask('_runServerTests', _runServerTests);
+    grunt.registerTask('testServer', ['_runServerTests', 'concat:serverTmpTestFilesResults', 'concat:serverTmpTestFilesCoverage', 'clean:serverTmpTestFiles', 'exec:generateHtmlServerCoverageReport']);
     grunt.registerTask('cleanServerBuild', ['clean:serverBuild']);
     grunt.registerTask('cleanServerTest', ['clean:serverTest']);
 

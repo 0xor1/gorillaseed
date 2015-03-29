@@ -96,7 +96,7 @@ module.exports = function(grunt){
             serverTest: ['test/unit/server/*'],
             clientBuild: ['build/client'],
             clientTest: ['test/unit/client/coverage/*','test/unit/client/results/*'],
-            sass: ['src/client/**/*css'],
+            sass: ['src/client/**/*.css'],
             e2e: ['test/e2e/results/*'],
             serverTmpTestFiles: ['src/server/*.out', 'src/server/src/**/*.out']
         },

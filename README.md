@@ -19,9 +19,9 @@ the css and js files and then inline them into the index.html file. The seed pro
     * [Ruby](https://www.ruby-lang.org)
         * [Compass](http://compass-style.org/)
 
-2. Create the directory `$GOPATH/github.com/0xor1/gorillaseed` and check this repo out into it
+2. Create the directory `$GOPATH/src/github.com/0xor1/gorillaseed` and check this repo out into it
 
-3. `cd` to `$GOPATH/github.com/0xor1/gorillaseed` and run:
+3. `cd` to `$GOPATH/src/github.com/0xor1/gorillaseed` and run:
     ```sh
         npm install
         npm install -g grunt-cli

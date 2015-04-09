@@ -72,6 +72,12 @@ There is a grunt task to cover all the basic requirements of development, run th
 * `cleanE2e` will delete all generated files from running `testE2e`
 
 
-* `nuke` is a convenience command for `cleanAllBuild`, `cleanAllTest`, `cleanSass` and `cleanE2e`
+* `buildAppEngine` will copy the necessary files to `build\appengine`
+* `cleanAppEngineBuild` will delete `build\appengine`
+* `startDevAppEngine` will run the server in the local app engine environment from within `src\appengine`
+* `startBuildAppEngine` will run the server in the local app engine environment from within `build\appengine`
+
+
+* `nuke` is a convenience command for `cleanAllBuild`, `cleanAllTest`, `cleanSass`, `cleanE2e` and `cleanAppEngineBuild`
 
 

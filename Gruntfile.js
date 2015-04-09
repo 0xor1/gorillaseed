@@ -51,6 +51,12 @@ module.exports = function(grunt){
             },
             generateHtmlServerCoverageReport: {
                 cmd: 'cd test/unit/server && go tool cover -html=coverage.out -o=coverage.html'
+            },
+            startDevAppEngine: {
+                cmd: 'cd src/appengine && goapp serve'
+            },
+            startBuildAppEngine: {
+                cmd: 'cd build/appengine && goapp serve'
             }
         },
 
@@ -70,6 +76,12 @@ module.exports = function(grunt){
             styleBuild: {
                 src: 'src/client/style.css',
                 dest: 'build/client/style.css'
+            },
+            appEngineBuild: {
+                src: 'src/appengine/*',
+                dest: 'build/appengine/',
+                flatten: true,
+                expand: true
             }
         },
 
@@ -98,7 +110,8 @@ module.exports = function(grunt){
             clientTest: ['test/unit/client/coverage/*','test/unit/client/results/*'],
             sass: ['src/client/**/*.css'],
             e2e: ['test/e2e/results/*'],
-            serverTmpTestFiles: ['src/server/*.out', 'src/server/src/**/*.out']
+            serverTmpTestFiles: ['src/server/*.out', 'src/server/src/**/*.out'],
+            appEngineBuild: ['build/appengine']
         },
 
         concat: {
@@ -222,6 +235,11 @@ module.exports = function(grunt){
     grunt.registerTask('testE2e', ['exec:testE2e']);
     grunt.registerTask('cleanE2e', ['clean:e2e']);
 
-    grunt.registerTask('nuke', ['cleanAllBuild', 'cleanAllTest', 'cleanSass', 'cleanE2e']);
+    grunt.registerTask('buildAppEngine', ['copy:appEngineBuild']);
+    grunt.registerTask('cleanAppEngineBuild', ['clean:appEngineBuild']);
+    grunt.registerTask('startDevAppEngine', ['exec:startDevAppEngine']);
+    grunt.registerTask('startBuildAppEngine', ['exec:startBuildAppEngine']);
+
+    grunt.registerTask('nuke', ['cleanAllBuild', 'cleanAllTest', 'cleanSass', 'cleanE2e', 'cleanAppEngineBuild']);
 
 };

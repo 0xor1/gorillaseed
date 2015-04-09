@@ -10,7 +10,7 @@ import (
 func init() {
 	log.Println("Server Starting...")
 	baseRouter := mux.NewRouter()
-	domainRouter := baseRouter.Host("gorillaseed.net").Subrouter()
+	domainRouter := baseRouter.Host("gorillaseed-1.appspot.com").Subrouter()
 	bootstrap.Route(domainRouter)
 	http.Handle("/", baseRouter)
 }

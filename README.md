@@ -12,7 +12,7 @@ the css and js files and then inline them into the index.html file. The seed pro
 * End-to-End tests
 
 The app can be built into a standalone server.exe to run on any machine, it also comes with a preconfigured app.yaml file
-for easy upload to google app engine. You can see the seed project running on [GAE here](gorillaseed-1.appspot.com).
+for easy upload to google app engine. You can see the seed project running on [GAE here](http://gorillaseed-1.appspot.com).
 
 ##Setup Checklist
 

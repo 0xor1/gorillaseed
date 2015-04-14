@@ -52,11 +52,11 @@ module.exports = function(grunt){
             generateHtmlServerCoverageReport: {
                 cmd: 'cd test/unit/server && go tool cover -html=coverage.out -o=coverage.html'
             },
-            startDevAppEngine: {
-                cmd: 'cd src/appengine && goapp serve'
+            startAppEngine: {
+                cmd: 'cd build && goapp serve'
             },
-            startBuildAppEngine: {
-                cmd: 'cd build/appengine && goapp serve'
+            deployAppEngine: {
+                cmd: 'appcfg.py --oauth2 update build'
             }
         },
 
@@ -77,9 +77,9 @@ module.exports = function(grunt){
                 src: 'src/client/style.css',
                 dest: 'build/client/style.css'
             },
-            appEngineBuild: {
+            appEngine: {
                 src: 'src/appengine/*',
-                dest: 'build/appengine/',
+                dest: 'build/',
                 flatten: true,
                 expand: true
             }
@@ -111,7 +111,7 @@ module.exports = function(grunt){
             sass: ['src/client/**/*.css'],
             e2e: ['test/e2e/results/*'],
             serverTmpTestFiles: ['src/server/*.out', 'src/server/src/**/*.out'],
-            appEngineBuild: ['build/appengine']
+            appEngine: ['build/app.yaml', 'build/app.go']
         },
 
         concat: {
@@ -235,10 +235,10 @@ module.exports = function(grunt){
     grunt.registerTask('testE2e', ['exec:testE2e']);
     grunt.registerTask('cleanE2e', ['clean:e2e']);
 
-    grunt.registerTask('buildAppEngine', ['copy:appEngineBuild']);
-    grunt.registerTask('cleanAppEngineBuild', ['clean:appEngineBuild']);
-    grunt.registerTask('startDevAppEngine', ['exec:startDevAppEngine']);
-    grunt.registerTask('startBuildAppEngine', ['exec:startBuildAppEngine']);
+    grunt.registerTask('buildAppEngine', ['copy:appEngine']);
+    grunt.registerTask('cleanAppEngine', ['clean:appEngine']);
+    grunt.registerTask('startAppEngine', ['exec:startAppEngine']);
+    grunt.registerTask('deployAppEngine', ['exec:deployAppEngine']);
 
     grunt.registerTask('nuke', ['cleanAllBuild', 'cleanAllTest', 'cleanSass', 'cleanE2e', 'cleanAppEngineBuild']);
 

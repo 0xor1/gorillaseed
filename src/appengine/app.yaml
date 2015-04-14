@@ -1,50 +1,58 @@
 application: gorillaseed-1
-version: 2
+version: 1
 runtime: go
 api_version: go1
+
+#in the src folder this file is not runnable
+#needs building to the build folder and then
+#running from there. use:
+#grunt buildAppEngine
+#grunt startAppEngine
+#and to deploy use:
+#grunt deployAppEngine
 
 handlers:
 - url: /(.*\.css)
   mime_type: text/css
-  static_files: ../client/\1
-  upload: ../client/(.*\.css)
+  static_files: client/\1
+  upload: client/(.*\.css)
 
 - url: /(.*\.html)
   mime_type: text/html
-  static_files: ../client/\1
-  upload: ../client/(.*\.html)
+  static_files: client/\1
+  upload: client/(.*\.html)
 
 - url: /(.*\.js)
   mime_type: text/javascript
-  static_files: ../client/\1
-  upload: ../client/(.*\.js)
+  static_files: client/\1
+  upload: client/(.*\.js)
 
 - url: /(.*\.txt)
   mime_type: text/plain
-  static_files: ../client/\1
-  upload: ../client/(.*\.txt)
+  static_files: client/\1
+  upload: client/(.*\.txt)
 
 - url: /(.*\.xml)
   mime_type: application/xml
-  static_files: ../client/\1
-  upload: ../client/(.*\.xml)
+  static_files: client/\1
+  upload: client/(.*\.xml)
 
 - url: /(.*\.json)
   mime_type: application/json
-  static_files: ../client/\1
-  upload: ../client/(.*\.json)
+  static_files: client/\1
+  upload: client/(.*\.json)
 
 - url: /(.*\.(bmp|gif|ico|jpeg|jpg|png|svg))
-  static_files: ../client/\1
-  upload: ../client/(.*\.(bmp|gif|ico|jpeg|jpg|png|svg))
+  static_files: client/\1
+  upload: client/(.*\.(bmp|gif|ico|jpeg|jpg|png|svg))
 
 - url: /(.+)/
-  static_files: ../client/\1/index.html
-  upload: ../client/(.+)/index.html
+  static_files: client/\1/index.html
+  upload: client/(.+)/index.html
 
 - url: /
-  static_files: ../client/index.html
-  upload: ../client/index.html
+  static_files: client/index.html
+  upload: client/index.html
 
 - url: /api/.*
   script: _go_app

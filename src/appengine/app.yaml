@@ -46,6 +46,11 @@ handlers:
   static_files: client/\1
   upload: client/(.*\.(bmp|gif|ico|jpeg|jpg|png|svg))
 
+- url: /(.*\.appcache)
+  mime_type: text/cache-manifest
+  static_files: client/\1
+  upload: client/(.*\.appcache)
+
 - url: /(.+)/
   static_files: client/\1/index.html
   upload: client/(.+)/index.html

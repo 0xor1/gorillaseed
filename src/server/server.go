@@ -8,7 +8,7 @@ import (
 )
 
 const (
-	domain 		= "gorillaseed.net"
+	domain 		= "gorillaseed-1.appspot.com"
 	listenPort  = "8080"
 )
 
@@ -18,7 +18,6 @@ func main() {
 	baseRouter := mux.NewRouter()
 	fileServer := http.FileServer(http.Dir("../client"))
 
-	baseRouter.Host("{sub:.*}.{dom:.*}.{tld:.*}").PathPrefix("/").HandlerFunc(redirect)
 	domainRouter := baseRouter.Host(domain).Subrouter()
 	domainRouter.Methods("GET").PathPrefix("/").Handler(fileServer)
 	bootstrap.Route(domainRouter)
@@ -26,8 +25,4 @@ func main() {
 	http.Handle("/", baseRouter)
 	log.Println("Server Listening on Port: " + listenPort)
 	http.ListenAndServe(":" + listenPort, nil)
-}
-
-func redirect(w http.ResponseWriter, r *http.Request){
-	http.Redirect(w, r, "http://" + domain, http.StatusMovedPermanently)
 }

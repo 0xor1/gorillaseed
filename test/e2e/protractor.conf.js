@@ -2,7 +2,7 @@ var ScreenshotReporter = require('protractor-screenshot-reporter');
 var path = require('path');
 
 exports.config = {
-    baseUrl: 'http://gorillaseed.net',
+    baseUrl: 'http://gorillaseed-1.appspot.com',
 
     seleniumAddress: 'http://localhost:4444/wd/hub',
 
